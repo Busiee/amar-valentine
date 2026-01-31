@@ -2,65 +2,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>You Said Yes 💖</title>
+<title>YAY 💖</title>
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+  background: pink;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
   overflow: hidden;
 }
-
-.message {
-  background: white;
-  padding: 30px;
-  border-radius: 30px;
-  text-align: center;
-  animation: pop 1s ease;
-}
-
-@keyframes pop {
-  from { transform: scale(0); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.heart {
+.confetti {
   position: fixed;
-  color: hotpink;
-  font-size: 24px;
-  animation: float 5s linear infinite;
+  font-size: 20px;
+  animation: fall 3s linear infinite;
 }
-
-@keyframes float {
-  from { transform: translateY(100vh); opacity: 1; }
-  to { transform: translateY(-10vh); opacity: 0; }
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(110vh); }
 }
 </style>
 </head>
 
 <body>
-
-<div class="message">
-  <h1>Yay! 💕</h1>
-  <p>You just made my heart so happy 🥰</p>
-  <p>Forever starts now 💖</p>
-</div>
+<h1>She said YES 💍💖</h1>
 
 <script>
 setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "❤";
-  h.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 5000);
-}, 300);
+  const c = document.createElement("div");
+  c.className = "confetti";
+  c.innerText = "🎉";
+  c.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(c);
+  setTimeout(() => c.remove(), 3000);
+}, 150);
 </script>
-
 </body>
 </html>
+
