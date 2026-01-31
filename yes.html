@@ -29,17 +29,21 @@ body {
 
 <body>
 <h1>She said YES 💍💖</h1>
+  
+<audio id="music" loop playsinline>
+  <source src="love.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-setInterval(() => {
-  const c = document.createElement("div");
-  c.className = "confetti";
-  c.innerText = "🎉";
-  c.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(c);
-  setTimeout(() => c.remove(), 3000);
-}, 150);
+const m = document.getElementById("music");
+
+if (localStorage.getItem("musicPlaying") === "yes") {
+  m.play().then(() => {
+    m.volume = 0.8;
+  });
+}
 </script>
+
 </body>
 </html>
 
