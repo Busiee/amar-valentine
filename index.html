@@ -25,6 +25,17 @@ body {
   width: 90%;
   max-width: 350px;
   animation: fadeIn 1.5s ease;
+  .card {
+  box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px rgba(255,77,109,0.5); }
+  50% { box-shadow: 0 0 30px rgba(255,77,109,0.9); }
+  100% { box-shadow: 0 0 10px rgba(255,77,109,0.5); }
+}
+
 }
 
 @keyframes fadeIn {
@@ -56,7 +67,17 @@ button {
 </head>
 
 <body>
-<audio autoplay loop src="romantic.mp3"></audio>
+<audio id="bgMusic" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.onload = () => {
+  const music = document.getElementById("bgMusic");
+  music.play();
+};
+</script>
+
 
 <div class="card">
   <h1>Amar 💕</h1>
