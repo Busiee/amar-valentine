@@ -76,6 +76,8 @@ button {
 </style>
 </head>
 
+ 
+
 <body>
   <audio id="music" playsinline preload="auto">
   <source src="love.mp3" type="audio/mpeg">
@@ -116,8 +118,38 @@ function startMusic() {
     console.log("Audio failed:", err);
   });
 }
-</script>
 
+const beatPattern = [300, 200, 500]; // lub-dub-pause
+let beatIndex = 0;
+
+function spawnHeart() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = "❤";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = (20 + Math.random() * 18) + "px";
+
+  h.animate(
+    [
+      { transform: "scale(1)" },
+      { transform: "scale(1.6)" },
+      { transform: "scale(1)" }
+    ],
+    { duration: 400 }
+  );
+
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+
+  setTimeout(() => {
+    beatIndex = (beatIndex + 1) % beatPattern.length;
+    spawnHeart();
+  }, beatPattern[beatIndex]);
+}
+
+spawnHeart();
+
+</script>
 
 </body>
 </html>
