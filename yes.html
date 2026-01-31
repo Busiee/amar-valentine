@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YAY 💖</title>
 
 <style>
@@ -12,38 +13,40 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   font-family: sans-serif;
-  overflow: hidden;
 }
-.confetti {
-  position: fixed;
-  font-size: 20px;
-  animation: fall 3s linear infinite;
-}
-@keyframes fall {
-  from { transform: translateY(-10vh); }
-  to { transform: translateY(110vh); }
+
+img {
+  width: 80%;
+  max-width: 300px;
+  border-radius: 20px;
 }
 </style>
 </head>
 
 <body>
-<h1>She said YES 💍💖</h1>
-  
+
 <audio id="music" loop playsinline>
   <source src="love.mp3" type="audio/mpeg">
 </audio>
 
-<script>
-const m = document.getElementById("music");
+<h1>She said YES 💍💖</h1>
+<img id="slide" src="photo1.jpg">
 
-if (localStorage.getItem("musicPlaying") === "yes") {
-  m.play().then(() => {
-    m.volume = 0.8;
-  });
-}
+<button onclick="location.href='secret.html'">One More Thing 💌</button>
+
+<script>
+const m=document.getElementById("music");
+if(localStorage.getItem("music")==="yes"){m.play();}
+
+const pics=["photo1.jpg","photo2.jpg","photo3.jpg"];
+let i=0;
+setInterval(()=>{
+  i=(i+1)%pics.length;
+  document.getElementById("slide").src=pics[i];
+},4000);
 </script>
 
 </body>
 </html>
-
