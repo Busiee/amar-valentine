@@ -77,8 +77,13 @@ button {
 </head>
 
 <body>
+  <audio id="music" playsinline preload="auto">
+  <source src="love.mp3" type="audio/mpeg">
+</audio>
+
 
 <div id="tap" onclick="startMusic()">Tap to start 💖</div>
+
 
 <audio id="music" loop muted playsinline>
   <source src="romantic.mp3" type="audio/mpeg">
@@ -96,33 +101,23 @@ function startMusic() {
   const m = document.getElementById("music");
 
   m.play().then(() => {
-    m.muted = false;   // ✅ unmute after play starts
     m.volume = 0;
 
     let v = 0;
     const fade = setInterval(() => {
       v += 0.05;
       m.volume = v;
-      if (v >= 1) clearInterval(fade);
+      if (v >= 0.8) clearInterval(fade);
     }, 200);
+
+    localStorage.setItem("musicPlaying", "yes");
+    document.getElementById("tap").remove();
   }).catch(err => {
-    console.log("Audio blocked:", err);
+    console.log("Audio failed:", err);
   });
-
-  document.getElementById("tap").remove();
 }
-
-
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "❤";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.animationDuration = (3 + Math.random() * 3) + "s";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 6000);
-}, 300);
 </script>
+
 
 </body>
 </html>
