@@ -40,6 +40,18 @@ button {
   font-size: 1rem;
   cursor: pointer;
 }
+
+/* loading overlay */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #ffafbd;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: white;
+}
 </style>
 </head>
 
@@ -51,17 +63,17 @@ button {
   <button onclick="openCard()">Open Card 💖</button>
 </div>
 
-<audio id="music" src="romantic.mp3"></audio>
+<div id="loader">💖 Opening…</div>
 
 <script>
 function openCard() {
-  const music = document.getElementById("music");
-  music.play();
+  document.getElementById("loader").style.display = "flex";
   setTimeout(() => {
     window.location.href = "main.html";
-  }, 800);
+  }, 1200);
 }
 </script>
 
 </body>
 </html>
+
