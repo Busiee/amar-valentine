@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>A Card for You 💌</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
@@ -38,42 +39,15 @@ button {
   padding: 12px 20px;
   border-radius: 30px;
   font-size: 1rem;
-  cursor: pointer;
-}
-
-/* loading overlay */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: #ffafbd;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  color: white;
 }
 </style>
 </head>
 
 <body>
-
 <div class="card">
   <h2>💌 For You</h2>
   <p>I made something special</p>
-  <button onclick="openCard()">Open Card 💖</button>
+  <button onclick="location.href='main.html'">Open Card 💖</button>
 </div>
-
-<div id="loader">💖 Opening…</div>
-
-<script>
-function openCard() {
-  document.getElementById("loader").style.display = "flex";
-  setTimeout(() => {
-    window.location.href = "main.html";
-  }, 1200);
-}
-</script>
-
 </body>
 </html>
-
