@@ -15,6 +15,12 @@ body {
   align-items: center;
   font-family: sans-serif;
   overflow: hidden;
+  opacity: 0;
+  animation: fadePage 1.5s forwards;
+}
+
+@keyframes fadePage {
+  to { opacity: 1; }
 }
 
 .card {
@@ -24,23 +30,14 @@ body {
   text-align: center;
   width: 90%;
   max-width: 350px;
-  animation: fadeIn 1.5s ease;
-  .card {
-  box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
   animation: pulse 2s infinite;
+  box-shadow: 0 0 25px rgba(255,77,109,0.7);
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 10px rgba(255,77,109,0.5); }
-  50% { box-shadow: 0 0 30px rgba(255,77,109,0.9); }
-  100% { box-shadow: 0 0 10px rgba(255,77,109,0.5); }
-}
-
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  0% { box-shadow: 0 0 10px rgba(255,77,109,.5); }
+  50% { box-shadow: 0 0 30px rgba(255,77,109,1); }
+  100% { box-shadow: 0 0 10px rgba(255,77,109,.5); }
 }
 
 button {
@@ -63,30 +60,52 @@ button {
   from { transform: translateY(-10vh); opacity: 1; }
   to { transform: translateY(110vh); opacity: 0; }
 }
+
+/* tap overlay */
+#tap {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 </style>
 </head>
 
 <body>
-<audio id="bgMusic" loop>
+
+<div id="tap" onclick="startMusic()">Tap to start 💖</div>
+
+<audio id="music" loop>
   <source src="romantic.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-window.onload = () => {
-  const music = document.getElementById("bgMusic");
-  music.play();
-};
-</script>
-
 
 <div class="card">
   <h1>Amar 💕</h1>
   <p>You are my safe place, my happiness, my heart.</p>
   <p>Will you be my Valentine? 💖</p>
-<button onclick="location.href='yes.html'">Yes 💘</button>
+  <button onclick="location.href='yes.html'">Yes 💘</button>
 </div>
 
 <script>
+function startMusic() {
+  const m = document.getElementById("music");
+  m.volume = 0;
+  m.play();
+  document.getElementById("tap").remove();
+
+  let v = 0;
+  const fade = setInterval(() => {
+    v += 0.05;
+    m.volume = v;
+    if (v >= 1) clearInterval(fade);
+  }, 200);
+}
+
 setInterval(() => {
   const h = document.createElement("div");
   h.className = "heart";
@@ -97,5 +116,7 @@ setInterval(() => {
   setTimeout(() => h.remove(), 6000);
 }, 300);
 </script>
+
 </body>
 </html>
+
